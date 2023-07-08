@@ -1,7 +1,5 @@
-version: '3.3'
-
+version: '3.9'
 services:
-
   backend:
     container_name: backend
     image: vladislavser/backend-kupipodaridai:1.0.0
@@ -17,7 +15,6 @@ services:
       - type: bind
         source: ./backend/src
         target: /app/src
-
   frontend:
     container_name: frontend
     image: vladislavser/frontend-kupipodaridai:1.0.0
@@ -30,7 +27,6 @@ services:
       - type: bind
         source: ./frontend/src
         target: /app/src
-
   postgres:
     container_name: postgres
     image: postgres
@@ -40,7 +36,6 @@ services:
       - pg_data:/data/postgres
     networks:
       - backend_network
-
   adminer:
     image: adminer
     restart: unless-stopped
@@ -50,11 +45,8 @@ services:
       - postgres
     networks:
       - backend_network
-
 volumes:
   pg_data:
-
-
 networks:
   backend_network:
   frontend_network:
