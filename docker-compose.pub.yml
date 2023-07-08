@@ -4,9 +4,7 @@ services:
 
   backend:
     container_name: backend
-    build:
-      context: backend
-      dockerfile: Dockerfile.pub
+    image: vladislavser/backend-kupipodaridai:1.0.0
     env_file: .env.example
     ports:
       - '4000:3000'
@@ -22,9 +20,7 @@ services:
 
   frontend:
     container_name: frontend
-    build:
-      context: frontend
-      dockerfile: Dockerfile.pub
+    image: vladislavser/frontend-kupipodaridai:1.0.0
     ports:
       - '3001:3000'
     restart: unless-stopped
