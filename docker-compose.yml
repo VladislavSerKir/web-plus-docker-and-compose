@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+
+  backend:
+    container_name: backend
+    build:
+      context: backend
+      dockerfile: Dockerfile.dev
+    env_file: .env.example
+    ports:
+      - '4000:3000'
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  frontend:
+    container_name: frontend
+    build:
+      context: frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3001:3000'
+    restart: unless-stopped
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: unless-stopped
+    env_file: .env.example
+
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 8081:80
+    depends_on:
+      - postgres
